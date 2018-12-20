@@ -6,7 +6,7 @@
 FROM golang:1.11 as builder
 
 # Set out workdir to our current service in the gopath
-WORKDIR /go/src/github.com/aaronflower/dzone-shipping/service.vessel
+WORKDIR /go/src/github.com/aaronflower/shippy-service-vessel
 
 # Copy the current code into our workdir
 COPY . .
@@ -35,7 +35,6 @@ WORKDIR /app
 # Here, instead of copying the binary from our host machine, we pull the binary from
 # the container name `builder`, within this build context. This reaches into our previous
 # image, finds the binary we built, and pulls it into this container. Amazing.
-# COPY --from=builder /go/src/github.com/aaronflower/dzone-shipping/service.vessel .
 COPY service.vessel .
 
 # Run the binary as per usual! This time with a binary build in a separate container,
